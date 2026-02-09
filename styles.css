@@ -100,6 +100,17 @@ button {
   transform: translateY(18px) scale(0.98);
   transition: transform .35s ease, opacity .35s ease;
 }
+.q-card.swipe-out {
+  transform: translateX(-34px) translateY(-8px) rotate(-2deg);
+  opacity: 0;
+}
+.q-card.swipe-in {
+  animation: swipeIn .38s ease;
+}
+@keyframes swipeIn {
+  from { transform: translateX(34px) translateY(16px) scale(.98); opacity: .4; }
+  to { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+}
 .q-card.active {
   opacity: 1;
   pointer-events: auto;
@@ -152,6 +163,7 @@ button {
   text-align: center;
   padding: 28px 8px 6px;
 }
+.replay { margin-top: 10px; }
 
 #confetti {
   position: fixed;

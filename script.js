@@ -6,6 +6,9 @@ const card = document.getElementById('card');
 const questionnaire = document.getElementById('questionnaire');
 const qStack = document.getElementById('qStack');
 const resultCard = document.getElementById('resultCard');
+const resultTitle = document.getElementById('resultTitle');
+const resultSub = document.getElementById('resultSub');
+const replayBtn = document.getElementById('replayBtn');
 const qCards = Array.from(document.querySelectorAll('.q-card'));
 
 let noClicks = 0;
@@ -31,6 +34,7 @@ function dodgeNo() {
 }
 
 yesBtn.addEventListener('click', () => {
+  resetQuestionnaire();
   card.classList.add('hidden');
   questionnaire.classList.remove('hidden');
   questionnaire.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -79,19 +83,60 @@ for (const btn of document.querySelectorAll('.q-btn')) {
     if (idx === qCards.length - 1) {
       setTimeout(showFinalCard, 550);
     } else {
+      cardEl.classList.add('swipe-out');
       setTimeout(() => {
         currentStep += 1;
         updateStack();
-      }, 450);
+        const nextCard = qCards[currentStep];
+        nextCard.classList.add('swipe-in');
+        setTimeout(() => nextCard.classList.remove('swipe-in'), 420);
+      }, 380);
     }
   });
+}
+
+function typeWriter(el, text, speed = 36) {
+  el.textContent = '';
+  let i = 0;
+  const timer = setInterval(() => {
+    el.textContent += text[i] || '';
+    i += 1;
+    if (i >= text.length) clearInterval(timer);
+  }, speed);
 }
 
 function showFinalCard() {
   qStack.classList.add('hidden');
   resultCard.classList.remove('hidden');
+  typeWriter(resultTitle, 'Best Girlfriend Ever 💖', 42);
+  setTimeout(() => typeWriter(resultSub, 'I love you always, Cutu, Bubba, and Sweetu 😚', 28), 420);
   launchConfetti();
 }
+
+function resetQuestionnaire() {
+  qStack.classList.remove('hidden');
+  resultCard.classList.add('hidden');
+  resultTitle.textContent = '';
+  resultSub.textContent = '';
+
+  qCards.forEach((cardEl) => {
+    cardEl.dataset.locked = 'false';
+    cardEl.classList.remove('swipe-out', 'swipe-in');
+    cardEl.querySelectorAll('.q-btn').forEach((b) => {
+      b.disabled = false;
+      b.classList.remove('selected', 'locked');
+    });
+    const feedback = cardEl.querySelector('.q-feedback');
+    if (feedback) feedback.textContent = '';
+  });
+}
+
+replayBtn.addEventListener('click', () => {
+  currentStep = 0;
+  resetQuestionnaire();
+  updateStack();
+  questionnaire.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 let audioCtx;
 let musicTimer;
