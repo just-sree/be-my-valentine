@@ -27,7 +27,7 @@ function dodgeNo() {
 
 yesBtn.addEventListener('click', () => {
   card.innerHTML = `
-    <p class="tag">Sree ❤️ Mannat</p>
+    <p class="tag">To my silliest gooshie</p>
     <h1>Best. Decision. Ever.</h1>
     <p class="sub">Officially locked in for Valentine’s 💘</p>
     <p class="hint">Mannat said yes. I love you, Gooshie — our ninja love arc is canon now 🍥😚</p>
@@ -35,22 +35,9 @@ yesBtn.addEventListener('click', () => {
   launchConfetti();
 });
 
-// simple built-in romantic music toggle (no external files)
 let audioCtx;
 let musicTimer;
 let musicOn = false;
-
-musicBtn.addEventListener('click', () => {
-  if (!musicOn) {
-    startMusic();
-    musicOn = true;
-    musicBtn.textContent = '🎵 Music: On';
-  } else {
-    stopMusic();
-    musicOn = false;
-    musicBtn.textContent = '🎵 Music: Off';
-  }
-});
 
 function playNote(freq, duration = 0.35, gainVal = 0.04) {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -67,17 +54,37 @@ function playNote(freq, duration = 0.35, gainVal = 0.04) {
 }
 
 function startMusic() {
+  if (musicOn) return;
   const progression = [261.63, 329.63, 392.0, 523.25, 392.0, 329.63];
   let i = 0;
   musicTimer = setInterval(() => {
     playNote(progression[i % progression.length]);
     i++;
   }, 450);
+  musicOn = true;
+  musicBtn.textContent = '🎵 Theme Music: On';
 }
 
 function stopMusic() {
   clearInterval(musicTimer);
+  musicOn = false;
+  musicBtn.textContent = '🎵 Theme Music: Off';
 }
+
+musicBtn.addEventListener('click', () => {
+  if (musicOn) stopMusic();
+  else startMusic();
+});
+
+// Keep music ON by default (best effort; mobile browsers may require first tap)
+window.addEventListener('load', () => {
+  try { startMusic(); } catch (e) {}
+});
+window.addEventListener('click', () => {
+  if (!musicOn) {
+    try { startMusic(); } catch (e) {}
+  }
+}, { once: true });
 
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');

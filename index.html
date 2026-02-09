@@ -11,39 +11,51 @@
 </head>
 <body>
   <main class="wrap">
-    <div class="card" id="card">
+    <section class="card title-card" id="card">
       <p class="tag">To my silliest gooshie</p>
       <h1>Mannat, will you be my Valentine?</h1>
       <p class="sub">From Sree — with snacks, forehead kisses, and elite playlist curation.</p>
       <p class="naruto-line">You’re my favorite person in every universe. Dattebayo. 🍥</p>
       <p class="gooshie">I love you, Gooshie 🧡</p>
-
       <p class="date">14 February 2026 ✨</p>
-
-      <div class="photos">
-        <div class="photo-slot">S</div>
-        <div class="photo-slot">M</div>
-      </div>
 
       <div class="btns" id="btns">
         <button class="yes" id="yesBtn">Yes, Believe It! 💘</button>
         <button class="no" id="noBtn">No... maybe? 🙈</button>
-        <button class="music" id="musicBtn">🎵 Theme Music: Off</button>
+        <button class="music" id="musicBtn">🎵 Theme Music: On</button>
       </div>
 
       <p class="hint" id="hint">Choose wisely 😌</p>
+    </section>
 
-      <section class="memory" aria-label="Our memories collage">
-        <h2>Our Ninja Love Scroll 🧡</h2>
-        <div class="goose-sticker" aria-label="Silly goose sticker">🪿 silly goose mode</div>
-        <div class="memory-grid">
-          <img src="assets/images/memory-1.jpg" alt="Sree and Mannat memory 1" class="memory-collage" />
-          <img src="assets/images/memory-2.jpg" alt="Sree and Mannat memory 2" class="memory-collage" />
-          <img src="assets/images/memory-3.jpg" alt="Sree and Mannat memory 3" class="memory-collage" />
-          <img src="assets/images/memory-4.jpg" alt="Sree and Mannat memory 4" class="memory-collage" />
-        </div>
-      </section>
-    </div>
+    <section class="card questionnaire" aria-label="Our memories and questions">
+      <h2>Gooshie Questionnaire 🪿🍥</h2>
+      <p class="q-sub">Answer each card correctly (there is one obvious path 😌)</p>
+
+      <article class="q-card">
+        <img src="assets/images/memory-1.jpg" alt="Sree and Mannat memory 1" class="q-img" />
+        <p class="q-text">Q1: Is this our cutest photo ever?</p>
+        <p class="q-answer">Correct answer: Yes obviously 💞</p>
+      </article>
+
+      <article class="q-card">
+        <img src="assets/images/memory-2.jpg" alt="Sree and Mannat memory 2" class="q-img" />
+        <p class="q-text">Q2: Should we go on more cozy dates like this?</p>
+        <p class="q-answer">Correct answer: 1000% yes 🍜</p>
+      </article>
+
+      <article class="q-card">
+        <img src="assets/images/memory-3.jpg" alt="Sree and Mannat memory 3" class="q-img" />
+        <p class="q-text">Q3: Do I love you, Gooshie?</p>
+        <p class="q-answer">Correct answer: Forever yes 🧡</p>
+      </article>
+
+      <article class="q-card">
+        <img src="assets/images/memory-4.jpg" alt="Sree and Mannat memory 4" class="q-img" />
+        <p class="q-text">Final Q: Will you be my Valentine, Mannat?</p>
+        <p class="q-answer">Correct answer: YES DATTEBAYO 💘</p>
+      </article>
+    </section>
 
     <canvas id="confetti"></canvas>
   </main>

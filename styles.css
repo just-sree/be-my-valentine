@@ -20,52 +20,37 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
+  gap: 16px;
   padding: 20px;
   position: relative;
   overflow: hidden;
 }
 .card {
-  width: min(560px, 94vw);
+  width: min(700px, 94vw);
   background: rgba(10,14,22,0.52);
   border: 1px solid rgba(255,179,71,0.38);
   backdrop-filter: blur(10px);
   border-radius: 24px;
-  padding: 28px 24px;
-  text-align: center;
+  padding: 24px 20px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.45);
   z-index: 2;
 }
-.tag {
-  margin: 0;
-  opacity: 0.85;
-  letter-spacing: .04em;
-}
+.title-card { text-align: center; }
+.tag { margin: 0; opacity: 0.9; letter-spacing: .04em; font-weight: 800; }
 h1 {
   font-family: 'Pacifico', cursive;
   font-size: clamp(2rem, 7vw, 3.4rem);
-  margin: 12px 0 10px;
+  margin: 10px 0 10px;
 }
 .sub { margin: 0 0 10px; font-size: 1.05rem; }
 .naruto-line { margin: 0 0 8px; color: #ffd7a3; font-weight: 700; }
 .gooshie { margin: 0 0 12px; color: #ffcf8b; font-weight: 900; letter-spacing: .02em; }
 .date { margin: 0 0 14px; opacity: .88; font-weight: 700; color: #ffe1bb; }
-.photos {
-  display: none;
-}
-.photo-slot {
-  width: 74px;
-  height: 74px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  font-weight: 900;
-  background: rgba(255,138,0,0.22);
-  border: 1px solid rgba(255,179,71,0.6);
-}
+
 .btns {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   min-height: 54px;
   position: relative;
@@ -92,41 +77,25 @@ button {
   color: #ffe6c7;
   border: 1px solid rgba(255,179,71,0.35);
 }
-.hint { opacity: .85; margin-top: 16px; }
-.memory {
-  margin-top: 18px;
-  text-align: left;
-}
-.memory h2 {
-  margin: 0 0 10px;
-  font-size: 1.05rem;
-}
-.goose-sticker {
-  display: inline-block;
-  margin: 0 0 10px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,179,71,0.45);
-  font-weight: 800;
-  font-size: .9rem;
-}
-.memory-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-.memory-collage {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+.hint { opacity: .9; margin-top: 14px; }
+
+.questionnaire h2 { margin: 0 0 6px; text-align: center; }
+.q-sub { margin: 0 0 14px; text-align: center; opacity: .9; }
+.q-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,179,71,0.25);
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.25);
-  box-shadow: 0 8px 26px rgba(0,0,0,0.25);
+  padding: 10px;
+  margin-bottom: 12px;
 }
-@media (max-width: 560px) {
-  .memory-grid { grid-template-columns: 1fr; }
+.q-img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.22);
+  margin-bottom: 8px;
 }
+.q-text { margin: 0 0 4px; font-weight: 800; }
+.q-answer { margin: 0; color: #ffd9ab; }
 
 #confetti {
   position: fixed;
