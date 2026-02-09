@@ -1,5 +1,6 @@
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
+const musicBtn = document.getElementById('musicBtn');
 const hint = document.getElementById('hint');
 const card = document.getElementById('card');
 
@@ -26,13 +27,57 @@ function dodgeNo() {
 
 yesBtn.addEventListener('click', () => {
   card.innerHTML = `
-    <p class="tag">YAYYYYY 💞</p>
+    <p class="tag">Sree ❤️ Mannat</p>
     <h1>Best. Decision. Ever.</h1>
     <p class="sub">Officially locked in for Valentine’s 💘</p>
-    <p class="hint">Now screenshot this and send me a kiss 😚</p>
+    <p class="hint">Mannat said yes. Screenshot this for the memories 😚</p>
   `;
   launchConfetti();
 });
+
+// simple built-in romantic music toggle (no external files)
+let audioCtx;
+let musicTimer;
+let musicOn = false;
+
+musicBtn.addEventListener('click', () => {
+  if (!musicOn) {
+    startMusic();
+    musicOn = true;
+    musicBtn.textContent = '🎵 Music: On';
+  } else {
+    stopMusic();
+    musicOn = false;
+    musicBtn.textContent = '🎵 Music: Off';
+  }
+});
+
+function playNote(freq, duration = 0.35, gainVal = 0.04) {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const now = audioCtx.currentTime;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = 'sine';
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(gainVal, now);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+  osc.connect(gain).connect(audioCtx.destination);
+  osc.start(now);
+  osc.stop(now + duration);
+}
+
+function startMusic() {
+  const progression = [261.63, 329.63, 392.0, 523.25, 392.0, 329.63];
+  let i = 0;
+  musicTimer = setInterval(() => {
+    playNote(progression[i % progression.length]);
+    i++;
+  }, 450);
+}
+
+function stopMusic() {
+  clearInterval(musicTimer);
+}
 
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');

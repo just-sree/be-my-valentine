@@ -44,7 +44,24 @@ h1 {
   font-size: clamp(2rem, 7vw, 3.4rem);
   margin: 12px 0 10px;
 }
-.sub { margin: 0 0 20px; font-size: 1.05rem; }
+.sub { margin: 0 0 12px; font-size: 1.05rem; }
+.date { margin: 0 0 14px; opacity: .88; font-weight: 700; }
+.photos {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.photo-slot {
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.35);
+}
 .btns {
   display: flex;
   justify-content: center;
@@ -69,6 +86,11 @@ button {
 .no {
   background: rgba(255,255,255,0.18);
   color: white;
+}
+.music {
+  background: rgba(255,255,255,0.12);
+  color: #ffe8f4;
+  border: 1px solid rgba(255,255,255,0.24);
 }
 .hint { opacity: .85; margin-top: 16px; }
 #confetti {
