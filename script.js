@@ -12,11 +12,11 @@ noBtn.addEventListener('click', dodgeNo);
 function dodgeNo() {
   noClicks++;
   const messages = [
-    "You sure? 🥺",
-    "Think again 😏",
-    "That button seems broken 👀",
-    "C'mon, say yes 💕",
-    "You know you want to 😌"
+    "Mannat-chan, are you sure? 🥺",
+    "The Hidden Leaf believes in us 😏",
+    "That button got shadow-cloned 👀",
+    "C'mon, say yes dattebayo 💕",
+    "This is our canon event 🍥"
   ];
   hint.textContent = messages[Math.min(noClicks - 1, messages.length - 1)];
 
@@ -30,7 +30,7 @@ yesBtn.addEventListener('click', () => {
     <p class="tag">Sree ❤️ Mannat</p>
     <h1>Best. Decision. Ever.</h1>
     <p class="sub">Officially locked in for Valentine’s 💘</p>
-    <p class="hint">Mannat said yes. Screenshot this for the memories 😚</p>
+    <p class="hint">Mannat said yes. Our ninja love arc is canon now 🍥😚</p>
   `;
   launchConfetti();
 });
@@ -96,7 +96,7 @@ function launchConfetti() {
     y: -20 - Math.random() * canvas.height * 0.4,
     r: 2 + Math.random() * 4,
     v: 1 + Math.random() * 3,
-    c: ['#ff5da2', '#ffd166', '#6ee7ff', '#b794ff'][Math.floor(Math.random()*4)],
+    c: ['#ff8a00', '#ffb347', '#6ee7ff', '#ff6b81'][Math.floor(Math.random()*4)],
     a: Math.random() * Math.PI * 2
   }));
   requestAnimationFrame(tick);
