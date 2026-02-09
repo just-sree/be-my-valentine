@@ -50,10 +50,7 @@ h1 {
 .gooshie { margin: 0 0 12px; color: #ffcf8b; font-weight: 900; letter-spacing: .02em; }
 .date { margin: 0 0 14px; opacity: .88; font-weight: 700; color: #ffe1bb; }
 .photos {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 16px;
+  display: none;
 }
 .photo-slot {
   width: 74px;
