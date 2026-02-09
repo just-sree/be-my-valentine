@@ -66,7 +66,7 @@ for (const btn of document.querySelectorAll('.q-btn')) {
 
     group.querySelectorAll('.q-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
-    feedback.textContent = '✅ Perfect answer, Gooshie.';
+    feedback.textContent = '✅ Perfect answer, cutu 💞';
     cardEl.dataset.locked = 'true';
 
     group.querySelectorAll('.q-btn').forEach(b => {
