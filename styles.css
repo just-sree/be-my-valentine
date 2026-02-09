@@ -46,7 +46,8 @@ h1 {
   margin: 12px 0 10px;
 }
 .sub { margin: 0 0 10px; font-size: 1.05rem; }
-.naruto-line { margin: 0 0 12px; color: #ffd7a3; font-weight: 700; }
+.naruto-line { margin: 0 0 8px; color: #ffd7a3; font-weight: 700; }
+.gooshie { margin: 0 0 12px; color: #ffcf8b; font-weight: 900; letter-spacing: .02em; }
 .date { margin: 0 0 14px; opacity: .88; font-weight: 700; color: #ffe1bb; }
 .photos {
   display: flex;
@@ -103,11 +104,31 @@ button {
   margin: 0 0 10px;
   font-size: 1.05rem;
 }
+.goose-sticker {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,179,71,0.45);
+  font-weight: 800;
+  font-size: .9rem;
+}
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
 .memory-collage {
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.25);
   box-shadow: 0 8px 26px rgba(0,0,0,0.25);
+}
+@media (max-width: 560px) {
+  .memory-grid { grid-template-columns: 1fr; }
 }
 
 #confetti {
