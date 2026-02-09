@@ -11,6 +11,7 @@
 </head>
 <body>
   <main class="wrap">
+    <div class="ambient-hearts" id="ambientHearts" aria-hidden="true"></div>
     <section class="card title-card" id="card">
       <p class="tag">To my silliest <span id="pet1">Gooshie</span> 🧡</p>
       <h1>Mannat, will you be my Valentine?</h1>
@@ -23,6 +24,7 @@
         <button class="yes" id="yesBtn">Yes 💘</button>
         <button class="no" id="noBtn">No... maybe? 🙈</button>
         <button class="music" id="musicBtn">🎵 Naruto Theme (soft): On</button>
+        <button class="music" id="captureBtn">📸 Screenshot Mode: Off</button>
       </div>
 
       <p class="hint" id="hint">Choose wisely 😌</p>
@@ -31,6 +33,8 @@
 
     <section class="card questionnaire hidden" id="questionnaire" aria-label="Our memories and questions">
       <h2><span id="pet4">Bubba</span> Quiz 🪿</h2>
+      <div class="q-progress"><span id="qProgressFill"></span></div>
+      <p class="q-progress-text" id="qProgressText">Question 1 of 4</p>
       <p class="q-sub">Every answer leads to one thing: I love my <span id="pet5">Gooshie</span> — always.</p>
 
       <div class="q-stack" id="qStack">

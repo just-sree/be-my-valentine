@@ -10,6 +10,10 @@ const resultTitle = document.getElementById('resultTitle');
 const resultSub = document.getElementById('resultSub');
 const replayBtn = document.getElementById('replayBtn');
 const qCards = Array.from(document.querySelectorAll('.q-card'));
+const qProgressFill = document.getElementById('qProgressFill');
+const qProgressText = document.getElementById('qProgressText');
+const captureBtn = document.getElementById('captureBtn');
+const ambientHearts = document.getElementById('ambientHearts');
 
 let noClicks = 0;
 let currentStep = 0;
@@ -34,6 +38,34 @@ function applyRandomPetNames() {
     if (used.length < petNames.length) used.push(pick);
     el.textContent = cap(pick);
   });
+}
+
+function spawnAmbientHearts() {
+  if (!ambientHearts) return;
+  ambientHearts.innerHTML = '';
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('span');
+    h.textContent = Math.random() > 0.5 ? '❤' : '🧡';
+    h.style.left = `${Math.random() * 100}%`;
+    h.style.fontSize = `${12 + Math.random() * 16}px`;
+    h.style.animationDuration = `${8 + Math.random() * 10}s`;
+    h.style.animationDelay = `${Math.random() * 8}s`;
+    ambientHearts.appendChild(h);
+  }
+}
+
+function enableParallax(img) {
+  if (img.dataset.parallaxBound === 'true') return;
+  img.dataset.parallaxBound = 'true';
+  const reset = () => { img.style.transform = 'rotateX(0deg) rotateY(0deg)'; };
+  img.addEventListener('pointermove', (e) => {
+    const r = img.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width - 0.5) * 6;
+    const y = ((e.clientY - r.top) / r.height - 0.5) * -6;
+    img.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+  });
+  img.addEventListener('pointerleave', reset);
+  img.addEventListener('touchend', reset);
 }
 
 noBtn.addEventListener('click', dodgeNo);
@@ -66,6 +98,7 @@ yesBtn.addEventListener('click', () => {
 });
 
 applyRandomPetNames();
+spawnAmbientHearts();
 
 function updateStack() {
   qCards.forEach((cardEl, idx) => {
@@ -78,7 +111,13 @@ function updateStack() {
   const active = qCards[currentStep];
   if (active) {
     qStack.style.minHeight = `${Math.max(420, active.offsetHeight + 26)}px`;
+    const img = active.querySelector('.q-img');
+    if (img) enableParallax(img);
   }
+
+  const pct = ((currentStep + 1) / qCards.length) * 100;
+  qProgressFill.style.width = `${pct}%`;
+  qProgressText.textContent = `Question ${Math.min(currentStep + 1, qCards.length)} of ${qCards.length}`;
 }
 
 for (const btn of document.querySelectorAll('.q-btn')) {
@@ -135,6 +174,7 @@ function showFinalCard() {
   typeWriter(resultTitle, 'Best Girlfriend Ever 💖', 42);
   setTimeout(() => typeWriter(resultSub, `I love you always — my ${cap(randomPet())} 😚`, 28), 420);
   launchConfetti();
+  setTimeout(() => launchConfetti(['#ffd166', '#fff0c2', '#ff9ec4', '#b8f2ff'], 130), 280);
 }
 
 function resetQuestionnaire() {
@@ -204,6 +244,12 @@ musicBtn.addEventListener('click', () => {
   else startMusic();
 });
 
+captureBtn.addEventListener('click', () => {
+  document.body.classList.toggle('capture-mode');
+  const on = document.body.classList.contains('capture-mode');
+  captureBtn.textContent = `📸 Screenshot Mode: ${on ? 'On' : 'Off'}`;
+});
+
 window.addEventListener('load', () => {
   try { startMusic(); } catch (e) {}
 });
@@ -224,13 +270,13 @@ function resize() {
 addEventListener('resize', resize);
 resize();
 
-function launchConfetti() {
-  pieces = Array.from({ length: 180 }, () => ({
+function launchConfetti(palette = ['#ff8a00', '#ffb347', '#6ee7ff', '#ff6b81'], count = 180) {
+  pieces = Array.from({ length: count }, () => ({
     x: Math.random() * canvas.width,
     y: -20 - Math.random() * canvas.height * 0.4,
     r: 2 + Math.random() * 4,
     v: 1 + Math.random() * 3,
-    c: ['#ff8a00', '#ffb347', '#6ee7ff', '#ff6b81'][Math.floor(Math.random() * 4)],
+    c: palette[Math.floor(Math.random() * palette.length)],
     a: Math.random() * Math.PI * 2
   }));
   requestAnimationFrame(tick);

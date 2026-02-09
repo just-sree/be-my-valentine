@@ -25,6 +25,23 @@ body {
   position: relative;
   overflow: hidden;
 }
+.ambient-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.ambient-hearts span {
+  position: absolute;
+  color: rgba(255, 185, 122, 0.2);
+  animation: floatHeart linear infinite;
+  user-select: none;
+}
+@keyframes floatHeart {
+  from { transform: translateY(105vh) scale(.8); opacity: 0; }
+  10% { opacity: .25; }
+  to { transform: translateY(-15vh) scale(1.15); opacity: 0; }
+}
 .card {
   width: min(700px, 94vw);
   background: rgba(10,14,22,0.52);
@@ -69,6 +86,11 @@ button {
   background: linear-gradient(135deg, var(--orange), var(--amber));
   color: #2a1200;
   box-shadow: 0 8px 25px rgba(255,138,0,0.45);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 8px 25px rgba(255,138,0,0.38); }
+  50% { box-shadow: 0 10px 30px rgba(255,138,0,0.64); }
 }
 .no {
   background: rgba(123,16,34,0.45);
@@ -83,6 +105,21 @@ button {
 .hint { opacity: .9; margin-top: 14px; }
 
 .questionnaire h2 { margin: 0 0 6px; text-align: center; }
+.q-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  overflow: hidden;
+  margin: 8px 0 4px;
+}
+.q-progress span {
+  display: block;
+  height: 100%;
+  width: 25%;
+  background: linear-gradient(90deg, var(--orange), var(--amber));
+  transition: width .35s ease;
+}
+.q-progress-text { margin: 0 0 10px; font-size: .9rem; opacity: .85; text-align: center; }
 .q-sub { margin: 0 0 14px; text-align: center; opacity: .9; }
 .q-stack {
   position: relative;
@@ -116,6 +153,7 @@ button {
   pointer-events: auto;
   transform: translateY(0) scale(1);
   z-index: 3;
+  box-shadow: 0 0 0 1px rgba(255,179,71,.3), 0 18px 30px rgba(0,0,0,.5), inset 0 0 60px rgba(255,179,71,0.06);
 }
 .q-card.next {
   opacity: .88;
@@ -134,6 +172,8 @@ button {
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.22);
   margin-bottom: 8px;
+  transition: transform .2s ease;
+  transform-style: preserve-3d;
 }
 .q-text { margin: 0 0 8px; font-weight: 800; }
 .q-actions { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -166,6 +206,14 @@ button {
   padding: 28px 8px 6px;
 }
 .replay { margin-top: 10px; }
+
+body.capture-mode .hint,
+body.capture-mode .tap-note,
+body.capture-mode #musicBtn,
+body.capture-mode #captureBtn,
+body.capture-mode .replay {
+  display: none !important;
+}
 
 #confetti {
   position: fixed;
