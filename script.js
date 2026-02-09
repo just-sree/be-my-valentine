@@ -70,7 +70,7 @@ for (const btn of document.querySelectorAll('.q-btn')) {
 
     group.querySelectorAll('.q-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
-    feedback.textContent = '✅ Perfect answer, cutu 💞';
+    feedback.textContent = '✅ Perfect answer, Cutu/Bubba/Sweetu/Gooshie 💞';
     cardEl.dataset.locked = 'true';
 
     group.querySelectorAll('.q-btn').forEach(b => {
@@ -109,7 +109,7 @@ function showFinalCard() {
   qStack.classList.add('hidden');
   resultCard.classList.remove('hidden');
   typeWriter(resultTitle, 'Best Girlfriend Ever 💖', 42);
-  setTimeout(() => typeWriter(resultSub, 'I love you always, Cutu, Bubba, and Sweetu 😚', 28), 420);
+  setTimeout(() => typeWriter(resultSub, 'I love you always — my Cutu, Bubba, Sweetu, and Gooshie 😚', 28), 420);
   launchConfetti();
 }
 
